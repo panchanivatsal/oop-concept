@@ -1,0 +1,99 @@
+<!-- wap to javascript class and object method use program to input marks of five subjects 
+    Physics, Chemistry, Biology, Mathematics and Computer. Calculate percentage and grade according to following
+
+
+Percentage >= 90% : Grade A
+Percentage >= 80% : Grade B
+Percentage >= 70% : Grade C
+Percentage >= 60% : Grade D 
+Percentage >= 50% : Grade E
+Percentage >= 40% : Grade F -->
+<table border="1">
+    <tr>
+        <td>Name</td>
+        <td>Physics</td>
+        <td>Chemistry</td>
+        <td>Biology</td>
+        <td>Mathematics</td>
+        <td>Computer</td>
+        <td>Total Marks</td>
+        <td>Percentage</td>
+        <td>Grade</td>
+    </tr>
+    <tbody id="alldatafile"></tbody>
+</table>
+<script type="text/javascript">
+    let records = [];
+    class datam {
+        marks() {
+            let name = prompt("Name");
+            let a = parseInt(prompt("Physics Marks"));
+            let b = parseInt(prompt("Chemistry Marks"));
+            let c = parseInt(prompt("Biology Marks"));
+            let d = parseInt(prompt("Mathematics Marks"));
+            let e = parseInt(prompt("Computer Marks"));
+            let sum = a + b + c + d + e;
+            let percentage = (sum / 500) * 100;
+            let grade;
+            if (percentage >= 90) {
+                grade = "A+";
+            }
+            else if (percentage >= 80) {
+                grade = "B+";
+            }
+            else if (percentage >= 70) {
+                grade = "B";
+            }
+            else if (percentage >= 60) {
+                grade = "C";
+            }
+            else if (percentage >= 50) {
+                grade = "D";
+            }
+            else if (percentage >= 40) {
+                grade = "E";
+            }
+            else {
+                grade = "Fail....";
+            }
+            let stud = {
+                name: name,
+                physics: a,
+                chemistry: b,
+                biology: c,
+                mathematics: d,
+                computer: e,
+                total: sum,
+                percentage: percentage + "%",
+                grade: grade
+
+            };
+            records.push(stud);
+        }
+    }
+    function datafile() {
+        let tbl = "";
+        records.map((val) => {
+
+            // const { name, physics, chemistry, biology, computer, mathematics, total, percentage, grade } = value;
+            tbl +=
+                `
+                <tr>
+                    <td>${val.name}</td>
+                    <td>${val.physics}</td>
+                    <td>${val.chemistry}</td>
+                    <td>${val.biology}</td>
+                    <td>${val.mathematics}</td>
+                    <td>${val.computer}</td>
+                    <td>${val.total}</td>
+                    <td>${val.percentage}</td>
+                    <td>${val.grade}</td>
+                </tr>
+            `;
+        });
+        document.getElementById('alldatafile').innerHTML = tbl;
+    }
+    let obj = new datam();
+    obj.marks();
+    datafile();
+</script>
